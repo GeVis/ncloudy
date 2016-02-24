@@ -2,7 +2,7 @@
   "name": "ncloudy",
   "version": "0.0.0",
   "description": "Distributed framework for Node.js service",
-  "author": "Meizan Zheng <zhengmz@gmail.com>",
+  "author": "Meizan Zheng <zmzsmnh@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/zmzsmnh/ncloudy.git"
