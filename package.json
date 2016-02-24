@@ -1,0 +1,30 @@
+{
+  "name": "ncloudy",
+  "version": "0.0.0",
+  "description": "Distributed framework for Node.js service",
+  "author": "Meizan Zheng <zhengmz@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zmzsmnh/ncloudy.git"
+  },
+  "main": "./libs/ncloudy",
+  "bugs": {
+    "url": "https://github.com/zmzsmnh/ncloudy/issues"
+  },
+  "homepage": "https://github.com/zmzsmnh/ncloudy",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Distributed",
+    "Service",
+    "Framework"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "bintrees": "^1.0.1",
+    "node-zookeeper-client": "^0.2.2",
+    "utility": "^1.6.0"
+  }
+}
