@@ -6,6 +6,8 @@ var cloudy = new Cloudy({
     path: '/cloudy/test'
 }, function(node) {
     return node;
+}, function(client) {
+    return null;
 }, function() {
     cloudy.register('172.16.11.225', 8787, 1);
     cloudy.register('172.16.11.226', 8787, 1);

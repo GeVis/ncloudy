@@ -1,9 +1,10 @@
 var ZKClient = require('./zk');
 var async = require('async');
 
-function Cloudy(options, onCreate, onReady) {
+function Cloudy(options, onCreate, onDelete, onReady) {
 	this.onCreate = onCreate;
 	this.onReady = onReady;
+	this.onDelete = onDelete;
 	this.ready = false;
 	var cloudy = this;
 	var cbk = function(err, nodes) {
@@ -15,6 +16,9 @@ function Cloudy(options, onCreate, onReady) {
 		}), function(node, cbk) {
 			cbk(null, onCreate(node));
 		}, function(err, clients) {
+			if (cloudy.clients && cloudy.clients.length) {
+				clients.forEach(cloudy.onDelete);
+			}
 			cloudy.clients = clients.filter(function(client) {
 				return client;
 			});
