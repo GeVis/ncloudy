@@ -6,6 +6,7 @@ function Cloudy(options, onCreate, onDelete, onReady) {
 	this.onReady = onReady;
 	this.onDelete = onDelete;
 	this.ready = false;
+	this.cur = 0;
 	var cloudy = this;
 	var cbk = function(err, nodes) {
 		if (err) {
@@ -45,8 +46,8 @@ Cloudy.prototype.client = function() {
 	if (!this.size) {
 		return null;
 	}
-	var idx = Math.floor(Math.random() * this.size);
-	return this.clients[idx];
+	this.cur = (this.cur + 1) % this.size;
+	return this.clients[this.cur];
 }
 
 module.exports = Cloudy;
