@@ -1,6 +1,6 @@
 {
   "name": "ncloudy",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Distributed framework for Node.js service",
   "author": {
     "name": "Meizan Zheng",

@@ -17,7 +17,6 @@ function Cloudy(options, onCreate, onDelete, onReady) {
         }).map(function(node) {
             return onCreate(node);
         });
-        console.log(cloudy.clients);
         cloudy.size = cloudy.clients.length;
         if (!cloudy.ready) {
             cloudy.ready = true;
