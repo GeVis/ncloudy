@@ -1,6 +1,41 @@
 var ZooKeeper = require('zk');
 var utils = require('utility');
 var async = require('async');
+var path = require('path');
+
+ZooKeeper.prototype.mkdirp = function(p, callback) {
+    var zk = this;
+    p = path.normalize(p);
+    var dirs = p.split('/').slice(1); // remove empty string at the start.
+
+    var create = function(client, p, cb) {
+        var data = 'created by zk-mkdir-p'; // just want a dir, so store something
+        var flags = 0; // none
+        client.create(p, data, flags).then(function(zkPath) {
+            // sucessfully created!
+            return cb();
+        }).catch(function(err) {
+            // already exists, cool.
+            if (err.code == -110) {
+                return cb();
+            } else {
+                return cb(new Error('Zookeeper Error: code=' + err.code + '   ' + err.message));
+            }
+        });
+    }
+
+    var tasks = [];
+    dirs.forEach(function(dir, i) {
+        var subpath = '/' + dirs.slice(0, i).join('/') + '/' + dir;
+        subpath = path.normalize(subpath); // remove extra `/` in first iteration
+        tasks.push(async.apply(create, zk, subpath));
+    });
+    async.waterfall(tasks, function(err, results) {
+        if (err) return callback(err);
+        // succeeded!
+        return callback(null, true);
+    });
+}
 
 function ZKClient(options, onCreate, onDelete, onUpdated) {
     options.host = options.host ? options.host : 'localhost';
@@ -26,7 +61,7 @@ function ZKClient(options, onCreate, onDelete, onUpdated) {
                 if (reply.stat) {
                     cbk(null);
                 } else {
-                    zk.client.zk.mkdirp(zk.options.path, function(err) {
+                    zk.client.mkdirp(zk.options.path, function(err) {
                         cbk(err);
                     });
                 }

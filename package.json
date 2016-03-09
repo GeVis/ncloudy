@@ -1,11 +1,14 @@
 {
   "name": "ncloudy",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Distributed framework for Node.js service",
-  "author": "Meizan Zheng <zmzsmnh@gmail.com>",
+  "author": {
+    "name": "Meizan Zheng",
+    "email": "zmzsmnh@gmail.com"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zmzsmnh/ncloudy.git"
+    "url": "git+https://github.com/zmzsmnh/ncloudy.git"
   },
   "main": "./libs/cloudy",
   "bugs": {
@@ -26,5 +29,32 @@
     "bintrees": "^1.0.1",
     "utility": "^1.6.0",
     "zk": "^1.0.3"
-  }
+  },
+  "gitHead": "043d0a8380e17aca47c3bec87683daf16c4c6c75",
+  "_id": "ncloudy@0.0.11",
+  "_shasum": "c1647f8f98f2d57694e33bfc649104e5c4dcbb74",
+  "_from": "ncloudy@0.0.11",
+  "_npmVersion": "2.12.1",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "zmz",
+    "email": "zmzsmnh@gmail.com"
+  },
+  "dist": {
+    "shasum": "c1647f8f98f2d57694e33bfc649104e5c4dcbb74",
+    "tarball": "http://registry.npmjs.org/ncloudy/-/ncloudy-0.0.11.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "zmz",
+      "email": "zmzsmnh@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/ncloudy-0.0.11.tgz_1456975199110_0.2521306620910764"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/ncloudy/-/ncloudy-0.0.11.tgz",
+  "readme": "ERROR: No README data found!"
 }

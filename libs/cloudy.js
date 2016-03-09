@@ -10,13 +10,14 @@ function Cloudy(options, onCreate, onDelete, onReady) {
     var cloudy = this;
     this.zk = new ZKClient(options, onCreate, onDelete, function(err, nodes) {
         if (cloudy.clients && cloudy.clients.length) {
-            clients.forEach(cloudy.onDelete);
+            cloudy.clients.forEach(cloudy.onDelete);
         }
         cloudy.clients = nodes.filter(function(node) {
             return node;
         }).map(function(node) {
             return onCreate(node);
         });
+        console.log(cloudy.clients);
         cloudy.size = cloudy.clients.length;
         if (!cloudy.ready) {
             cloudy.ready = true;
