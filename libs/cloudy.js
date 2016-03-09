@@ -8,15 +8,14 @@ function Cloudy(options, onCreate, onDelete, onReady) {
     this.ready = false;
     this.cur = 0;
     var cloudy = this;
-    this.zk = new ZKClient(options, onCreate, onDelete, function(err, nodes) {
-        if (cloudy.clients && cloudy.clients.length) {
-            cloudy.clients.forEach(cloudy.onDelete);
+    this.zk = new ZKClient(options, onCreate, function(client) {
+        var idx = cloudy.clients.indexOf(client);
+        if (idx > -1) {
+            cloudy.clients.splice(idx, 1);
         }
-        cloudy.clients = nodes.filter(function(node) {
-            return node;
-        }).map(function(node) {
-            return onCreate(node);
-        });
+        cloudy.onDelete(client);
+    }, function(err, clients) {
+        cloudy.clients = clients;
         cloudy.size = cloudy.clients.length;
         if (!cloudy.ready) {
             cloudy.ready = true;

@@ -137,12 +137,14 @@ ZKClient.prototype.get = function(name, cb) {
         if (arr.length < 3) {
             return cb('Data error: ' + path);
         }
-        cb(null, {
+        var node = {
             host: arr[0],
             port: parseInt(arr[1]),
             weight: parseFloat(arr[2]),
             hash: name
-        });
+        };
+        zk.nodes[name] = zk.onCreate(node);
+        cb(null, zk.nodes[name]);
     }, function(err, data, stats) {
         if (err || !data || data.length === 0) {
             console.error(path, err);
