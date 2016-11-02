@@ -25,8 +25,27 @@ function Cloudy(options, onCreate, onDelete, onReady) {
 }
 
 Cloudy.prototype.register = function(host, port, weight) {
+    var cloudy = this;
     weight = weight || 1;
     this.zk.add(host, port, weight);
+    function exitHandler(options, err) {
+        if (options.cleanup) {
+            console.log('Unregister Service Server From Cloudy');
+            cloudy.unregister(host, port);
+        }
+        if (err) {
+            console.log('Process Error:', err.stack);
+        }
+        if (options.exit) {
+            process.exit();
+        }
+    }
+    //do something when app is closing
+    process.on('exit', exitHandler.bind(null,{cleanup:true}));
+    //catches ctrl+c event
+    process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+    //catches uncaught exceptions
+    process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 }
 
 Cloudy.prototype.unregister = function(host, port) {

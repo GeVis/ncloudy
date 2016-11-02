@@ -28,7 +28,7 @@
     "async": "^1.5.2",
     "bintrees": "^1.0.1",
     "utility": "^1.6.0",
-    "zk": "^1.0.3"
+    "zookeeper": "^3.4.9-1"
   },
   "gitHead": "043d0a8380e17aca47c3bec87683daf16c4c6c75",
   "_id": "ncloudy@0.0.11",
