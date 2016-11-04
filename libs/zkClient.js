@@ -123,7 +123,7 @@ ZKClient.prototype.getAll = function(cb) {
                 w_resolve(event);
             },  function child_cb(rc, error, children){
                 if(rc) {
-                    var err = new Erro(error);
+                    var err = new Error(error);
                     err.code = rc;
                     reject(err);
                 } else {
