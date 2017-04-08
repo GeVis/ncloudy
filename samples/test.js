@@ -1,8 +1,9 @@
 var Cloudy = require('../libs/cloudy');
 
 var cloudy = new Cloudy({
-    host: '172.16.11.204',
-    port: 2181,
+    // host: '172.16.11.204',
+    // port: 2181,
+    connect: '172.16.11.212:2181,172.16.11.224:2181',
     path: '/heatmap/test/test'
 }, function(node) {
     console.log('test create', node)
@@ -10,8 +11,8 @@ var cloudy = new Cloudy({
 }, function(client) {
     console.log('test delete', client)
     return null;
-}, function(err, clients) {
-    console.log('test ready', clients)
+}, function(err) {
+    console.log('test ready')
     var port = ~~(Math.random()*100);
     cloudy.register('172.16.11.225', port, 1);
     // cloudy.register('172.16.11.226', 8787, 1);

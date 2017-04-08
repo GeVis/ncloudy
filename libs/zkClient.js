@@ -4,12 +4,13 @@ var async = require('async');
 var path = require('path');
 
 function ZKClient(options, onCreate, onDelete, onUpdated) {
-    options.host = options.host ? options.host : 'localhost';
-    options.port = options.port ? options.port : '2181';
-    options.path = options.path ? options.path : '/getu/test';
+    options.host = options.host || 'localhost';
+    options.port = options.port || '2181';
+    options.path = options.path || '/ncloudy';
+    options.connect = options.connect || (options.host + ':' + options.port);
     this.options = options;
     this.client = new ZooKeeper({
-        connect: options.host + ':' + options.port,
+        connect: options.connect,
         timeout: 200000,
         debug_level: ZooKeeper.ZOO_LOG_LEVEL_WARN,
         host_order_deterministic: false,
